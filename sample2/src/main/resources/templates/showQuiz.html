@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+li {
+	list-style: none;
+}
+
+body {
+	padding: 0.2em 0.5em;
+	color: #565656;
+	background: #ffeaea;
+	box-shadow: 0px 0px 0px 10px #ffeaea;
+	border: dashed 2px #ffc3c3;
+	border-radius: 8px;
+}
+
+.box ul {
+	margin: 0;
+	padding: 0;
+}
+</style>
+<meta charset="UTF-8" />
+<title>QuizList</title>
+</head>
+<body>
+
+	<ul th:each="questions:${questionList}">
+		<li><a th:href="@{'/editQuiz/' + ${questions.ploblemNumber}}"><span
+				th:text="|問題.${questions.ploblemNumber}|"></span></a></li>
+		<li><span th:text="${questions.question}"></span></li>
+	</ul>
+
+
+</body>
+</html>
+

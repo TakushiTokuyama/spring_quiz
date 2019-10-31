@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+p {
+	color: red;
+}
+
+body {
+	color: #565656;
+	background: #ffeaea;
+}
+
+.box {
+	text-align: center;
+	border-radius: 8px;
+	border: dashed 2px #ffc3c3;
+	width: 500px;
+	height: 200px;
+	margin: auto;
+	margin-top: 150px;
+}
+
+.btn-flat-border {
+	display: inline-block;
+	padding: 0.3em 1em;
+	text-decoration: none;
+	color: #67c5ff;
+	border: solid 2px #ffc3c3;
+	border-radius: 3px;
+	transition: .4s;
+}
+
+.btn-flat-border:hover {
+	background: #67c5ff;
+	color: white;
+}
+
+a {
+	font-size: 13px;
+}
+
+p {
+	font-size: 20px;
+	margin-top: 50px;
+}
+
+
+
+</style>
+<meta charset="UTF-8" />
+<title>QuizDelete</title>
+</head>
+<body>
+	<div class="box">
+		<p th:text="|問題.${quiz.get(0).ploblemNumber}を消す場合は削除ボタンを押してください。|"></p>
+
+		<form action="/deleteQuiz" method="post">
+
+			<input type="hidden" name="ploblemNumber"
+				th:value="${quiz.get(0).ploblemNumber}"> <input
+				class="btn-flat-border" type="submit" th:value="削除"> <a
+				class="btn-flat-border" href="/">やっぱりやめる</a>
+		</form>
+
+
+	</div>
+</body>
+</html>

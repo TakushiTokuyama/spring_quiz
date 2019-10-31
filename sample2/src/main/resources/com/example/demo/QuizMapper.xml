@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.QuizMapper">
+
+
+	<select id="findAll" resultType="com.example.demo.Quiz">
+		select * from quiz
+	</select>
+
+	<select id="findQuestion" resultType="com.example.demo.Quiz">
+		select * from quiz group by
+		ploblemNumber
+	</select>
+
+	<select id="findOne" resultType="com.example.demo.Quiz">
+		select * from quiz where
+		ploblemNumber = #{ploblemNumber}
+
+	</select>
+
+	<select id="findQuiz" resultType="com.example.demo.Quiz">
+		select * from quiz limit 4
+		offset #{ploblemNumber}
+	</select>
+
+	<select id="quizResult" resultType="com.example.demo.Quiz">
+		select * from quiz where
+		ploblemNumber = #{ploblemNumber} and result = #{result}
+	</select>
+
+	<select id="quizCreate" resultType="com.example.demo.Quiz">
+		insert into
+		quiz(ploblemNumber,orderNumber,question,answer,result)values(#{ploblemNumber},#{orderNumber},#{question},#{answer},#{result})
+	</select>
+
+	<select id="quizUpdate" resultType="com.example.demo.Quiz">
+		update quiz set question =
+		#{question} , answer = #{answer} , result = #{result} where
+		ploblemNumber = #{ploblemNumber} and orderNumber = #{orderNumber}
+	</select>
+
+	<select id="quizDelete" resultType="com.example.demo.Quiz">
+		delete from quiz where
+		ploblemNumber = #{ploblemNumber}
+	</select>
+
+	<select id="ploblemNumberUpdate"
+		resultType="com.example.demo.Quiz">
+		update quiz set ploblemNumber = #{ploblemN} where
+		ploblemNumber = #{ploblemUpNum}
+	</select>
+
+</mapper>

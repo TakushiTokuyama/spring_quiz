@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<style>
+
+.result{color:red;}
+body {
+
+    color: #565656;
+    background: #ffeaea;
+
+}
+
+.box{
+	text-align:center;
+	border-radius:8px;
+	border: dashed 2px #ffc3c3;
+	width:700px;
+	height:500px;
+	margin:auto;
+	margin-top:100px;
+
+
+}
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.box-contents-head{
+	margin:auto;
+	padding:50px;
+}
+
+.box-contents-head p{
+	font-size:20px;
+	padding:5px;
+}
+</style>
+
+
+<title>Quiz</title>
+</head>
+<body>
+
+<div class="box">
+
+	<div class ="box-contents-head">
+	<p th:text="|問題.${ploblemNumber}の結果|">
+
+	<div class = "result" th:if="${quizResult.get(0).result.equals('正解')}">
+	<p th:text="|${quizResult.get(0).result}  その調子！|" />
+	</div>
+
+	<div class = "result" th:if="${quizResult.get(0).result.equals('不正解')}">
+	<p th:text="|${quizResult.get(0).result}  もう一度やってみてね！|" />
+	</div>
+
+
+	<p>簡単だと思った人はクイズを登録してみてね。</p>
+
+	<p>オリジナルの4択問題を作れるよ！</p>
+	</div>
+	<a class="btn-flat-border" href="/question"><span th:text="${restart}"></span></a>
+
+	<a class="btn-flat-border" href = "/createQuiz">クイズを登録してみる</a>
+
+	<a class="btn-flat-border" href = "/showQuiz">クイズリスト</a>
+
+	<a class="btn-flat-border" href="/">最初に戻る</a>
+
+</div>
+
+</body>
+</html>

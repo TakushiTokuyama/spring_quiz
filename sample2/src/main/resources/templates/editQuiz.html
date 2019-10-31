@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8" />
+<style>
+body {
+	color: #565656;
+	background: #ffeaea;
+}
+
+.box {
+	text-align: center;
+	border-radius: 8px;
+	border: dashed 2px #ffc3c3;
+	width: 900px;
+	height: 600px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.btn-flat-border {
+	display: inline-block;
+	padding: 0.3em 1em;
+	text-decoration: none;
+	border: solid 2px #ffc3c3;
+	border-radius: 3px;
+	transition: .4s;
+}
+
+.btn-flat-border:hover {
+	background: #67c5ff;
+	color: white;
+}
+
+.link li {
+	list-style: none;
+	width: 33%;
+	float: right;
+}
+
+.link a {
+	font-size: 13px;
+}
+</style>
+<title>QuizEdit</title>
+</head>
+<body>
+	<div class="box">
+		<h1>問題編集</h1>
+
+		<form action="/editQuiz" method="post">
+
+			<p th:text="|問題番号.${quiz.get(0).ploblemNumber}|" />
+
+			<input type="hidden" name="ploblemNumber"
+				th:value="${quiz.get(0).ploblemNumber}">
+
+			<textarea name="question" th:inline="text" rows="10" cols="50">[[${quiz.get(0).question}]]</textarea>
+
+			<div>
+				<input type=text name="answerOne" size="80" maxlength="80"
+					th:value="${quiz.get(0).answer}"><input required
+					type="radio" name="result" value="1"><span
+					th:text="${quiz.get(0).result}"></span>
+			</div>
+
+			<div>
+				<input type=text name="answerTwo" size="80" maxlength="80"
+					th:value="${quiz.get(1).answer}"><input required
+					type="radio" name="result" value="2"><span
+					th:text="${quiz.get(1).result}"></span>
+			</div>
+
+			<div>
+				<input type=text name="answerThree" size="80" maxlength="80"
+					th:value="${quiz.get(2).answer}"><input required
+					type="radio" name="result" value="3"><span
+					th:text="${quiz.get(2).result}"></span>
+			</div>
+
+			<div>
+				<input type=text name="answerFour" size="80" maxlength="80"
+					th:value="${quiz.get(3).answer}"><input required
+					type="radio" name="result" value="4"><span
+					th:text="${quiz.get(3).result}"></span>
+			</div>
+
+			<p>正解にチェックマークを入れてください</p>
+			<div class="link">
+				<ul>
+					<li th:if="${lastPloblemNumber ge 2}"><a class="btn-flat-border"
+						th:href="@{'/deleteQuiz/' + ${quiz.get(0).ploblemNumber}}">削除</a></li>
+
+					<li><input class="btn-flat-border" type="submit" value="編集"></li>
+
+					<li><a class="btn-flat-border" href="/">最初に戻る</a></li>
+				</ul>
+			</div>
+		</form>
+
+
+
+
+	</div>
+</body>
+</html>

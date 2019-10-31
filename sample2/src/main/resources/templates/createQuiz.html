@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<style>
+body {
+	color: #565656;
+	background: #ffeaea;
+}
+
+.box {
+	text-align: center;
+	border-radius: 8px;
+	border: dashed 2px #ffc3c3;
+	width: 900px;
+	height: 600px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.btn-flat-border {
+	display: inline-block;
+	padding: 0.3em 1em;
+	text-decoration: none;
+	border: solid 2px #ffc3c3;
+	border-radius: 3px;
+	transition: .4s;
+}
+
+.btn-flat-border:hover {
+	background: #67c5ff;
+	color: white;
+}
+
+li {
+	list-style: none;
+	width: 50%;
+	float: right;
+}
+
+a {
+	font-size: 13px;
+}
+
+
+
+</style>
+<title>QuizCreate</title>
+</head>
+<body>
+	<div class="box">
+		<h1>問題作成</h1>
+
+		<p th:text="${message}" />
+
+		<form action="/createQuiz" method="post" th:object="${formModel}">
+
+			<p th:text="|問題番号.${ploblemNumber}|" />
+			<div>
+				<input type="hidden" name="ploblemNumber"
+					th:value="${ploblemNumber}">
+			</div>
+
+			<textarea name="question" rows="10" cols="50" th:value="${question}">問題文を入力してください</textarea>
+			<input type="hidden" name="answer" th:value="0">
+			<div>
+				<input type=text name="answerOne" size="80" maxlength="80"><input
+					required type="radio" name="result" value="1">
+			</div>
+
+			<div>
+				<input type=text name="answerTwo" size="80" maxlength="80"><input
+					required type="radio" name="result" value="2">
+			</div>
+
+			<div>
+				<input type=text name="answerThree" size="80" maxlength="80"><input
+					required type="radio" name="result" value="3">
+			</div>
+
+			<div>
+				<input type=text name="answerFour" size="80" maxlength="80"><input
+					required type="radio" name="result" value="4">
+			</div>
+
+			<p>正解にチェックマークを入れてください</p>
+			<ul>
+				<li><input class="btn-flat-border" type="submit" value="登録"></li>
+				<li><a class="btn-flat-border" href="/">戻る</a></li>
+			</ul>
+
+		</form>
+
+
+	</div>
+</body>
+</html>

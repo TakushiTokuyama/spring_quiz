@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Quiz</title>
+<style>
+body {
+
+    color: #565656;
+    background: #ffeaea;
+
+}
+
+.box{
+	text-align:center;
+	border-radius:8px;
+	border: dashed 2px #ffc3c3;
+	width:300px;
+	height:250px;
+	margin:auto;
+	margin-top:150px;
+
+
+}
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.box-footer{
+
+padding:10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="box">
+
+	<h1>Quiz!!</h1>
+
+	<div th:if="${createPloblemNumber}">
+		<p th:text="|問題番号${createPloblemNumber}作成できました|" />
+	</div>
+
+	<div th:if="${updatePloblemNumber}">
+		<p th:text="|問題番号${updatePloblemNumber}編集できました|" />
+	</div>
+
+	<div th:if="${deletePloblemNumber}">
+		<p th:text="|問題番号${deletePloblemNumber}削除できました|" />
+	</div>
+
+	<p>4択問題アプリ</p>
+<div class="box-footer">
+	<a class="btn-flat-border" href="/question" >クイズにチャレンジする</a>
+</div>
+	</div>
+
+</body>
+</html>
