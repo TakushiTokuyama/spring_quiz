@@ -19,13 +19,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/")
 public class QuizController {
 
 	@Autowired
 	QuizMapper quizMapper;
 
-	@GetMapping("/question")
+	@GetMapping("question")
 	public ModelAndView quiz(ModelAndView mav) {
+
+		 mav.setViewName("question");
 
 		ArrayList<Quiz> quizLists = quizMapper.findAll();
 
@@ -116,7 +119,7 @@ public class QuizController {
 	  }
 
 	*/
-	@PostMapping("/question")
+	@PostMapping("question")
 	public ModelAndView quizAnswer(ModelAndView mav, @RequestParam String ploblemNumber, @RequestParam String result) {
 
 		mav.setViewName("answer");
@@ -140,7 +143,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@GetMapping("/createQuiz")
+	@GetMapping("createQuiz")
 	public ModelAndView createQuiz(ModelAndView mav) {
 
 		ArrayList<Quiz> quizList = quizMapper.findAll();
@@ -154,7 +157,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@PostMapping("/createQuiz")
+	@PostMapping("createQuiz")
 	public ModelAndView createQuiz(@Valid @ModelAttribute("formModel") Quiz quiz, BindingResult bindingResult,
 			@RequestParam String ploblemNumber, @RequestParam String question,
 			@RequestParam String answerOne, @RequestParam String answerTwo, @RequestParam String answerThree,
@@ -217,7 +220,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@GetMapping("/showQuiz")
+	@GetMapping("showQuiz")
 	public ModelAndView showQuiz(ModelAndView mav) {
 
 		mav.setViewName("showQuiz");
@@ -233,7 +236,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@GetMapping("/editQuiz/{ploblemNumber}")
+	@GetMapping("editQuiz/{ploblemNumber}")
 	public ModelAndView editQuiz(ModelAndView mav, @PathVariable String ploblemNumber) {
 		mav.setViewName("editQuiz");
 
@@ -251,7 +254,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@PostMapping("/editQuiz")
+	@PostMapping("editQuiz")
 	public ModelAndView updateQuiz(@RequestParam String ploblemNumber, @RequestParam String question,
 			@RequestParam String answerOne, @RequestParam String answerTwo, @RequestParam String answerThree,
 			@RequestParam String answerFour, @RequestParam String result, ModelAndView mav) {
@@ -299,7 +302,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@GetMapping("/deleteQuiz/{ploblemNumber}")
+	@GetMapping("deleteQuiz/{ploblemNumber}")
 	public ModelAndView deleteQuiz(ModelAndView mav, @PathVariable String ploblemNumber) {
 		mav.setViewName("deleteQuiz");
 
@@ -310,7 +313,7 @@ public class QuizController {
 		return mav;
 	}
 
-	@PostMapping("/deleteQuiz")
+	@PostMapping("deleteQuiz")
 	public ModelAndView deleteQuizPost(@RequestParam String ploblemNumber, ModelAndView mav) {
 
 		mav.setViewName("index");
